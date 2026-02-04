@@ -9,3 +9,7 @@ Route::get('/login', function () {
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
+
+Route::post('/logout', function (){
+    return view('auth.logout');
+})->name('logout');

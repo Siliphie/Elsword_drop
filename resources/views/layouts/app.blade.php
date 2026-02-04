@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Elsword Tool</title>
-    <link rel="stylesheet" href="{{asset('css/home.css') }}">
     @stack('styles')
 </head>
 <body>
@@ -22,7 +21,7 @@
 </nav>
 
 <main>
-    @yeild('content')
+    @yield('content')
 </main>
 </body>
 </html>
