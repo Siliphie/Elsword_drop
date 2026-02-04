@@ -13,3 +13,7 @@ Route::get('/', function () {
 Route::post('/logout', function (){
     return view('auth.logout');
 })->name('logout');
+
+Route::get('/register', function(){
+    return view('auth.register');
+})->name('register');
