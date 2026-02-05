@@ -12,6 +12,7 @@
         <ul>
             <li><a href="{{route('home')}}"> Accueil</a></li>
             <li><a href="/dashboard" > My Drop List </a></li>
+            <li><a href="/login">login/register</a></li>
         </ul>
 
         <form method= "POST" action = "/logout">
