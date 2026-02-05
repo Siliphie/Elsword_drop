@@ -15,8 +15,8 @@
             </div>
 
             <div>
-                <label>Repeat password :</label>
-                <input type="password" name="password" required>
+                <label>password confirmation :</label>
+                <input type="password" name="password_confirmation" required>
             </div>
 
             <button type="submit">Se connecter</button>
