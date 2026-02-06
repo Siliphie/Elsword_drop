@@ -34,4 +34,5 @@ Route::middleware('auth')->group(function () {
     Route::post('/drops', [ItemDropRateController::class, 'store'])->name('drops.store');
     Route::get('/my-drops', [ItemDropRateController::class, 'index'])->name('drops.index');
     Route::delete('/drops/{id}', [ItemDropRateController::class, 'destroy'])->name('drops.destroy');
+    Route::get('/admin/drops', [ItemDropRateController::class, 'adminIndex'])->name('admin.drops.index');
     });
