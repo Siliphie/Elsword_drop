@@ -39,4 +39,12 @@ class AuthController extends Controller
             'email' => 'uncorrect mail or password.',
             ])->onlyInput('email');
     }
+    public function logout(Request $request)
+    {
+        auth()->logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/')->with('success', 'You are now disconnected');
+    }
 }
