@@ -1,59 +1,71 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+Elsword Drop Tool
+1. Présentation du projet
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Elsword Drop Tool est une application web dynamique développée avec le framework Laravel 11. Elle permet aux joueurs du jeu Elsword de suivre et de gérer leurs taux de drop d'objets (comme la Barion's Fur) en enregistrant leurs tentatives de runs. L'application propose une gestion complète des utilisateurs (Profil, ERP est le niveau de compte global) et un système de suivi des objets.
 
-## About Laravel
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+2. Prérequis techniques
+Pour faire fonctionner ce projet, vous aurez besoin de :
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+PHP >= 8.3.30
 
-## Learning Laravel
+Composer (Gestionnaire de dépendances PHP)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Serveur MySQL avec laragon en lançant apache MySQL et mailbit
 
-## Laravel Sponsors
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+3. Installation et Configuration
+Installation des dépendances
 
-### Premium Partners
+Bash
+composer install
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+Configuration de la base de données
+Copiez le fichier d'exemple : cp .env.example .env.
 
-## Contributing
+Modifiez le fichier .env pour configurer votre connexion (exemple pour SQLite):
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Lancement des migrations
+Pour créer les tables (Utilisateurs et Items) :
 
-## Code of Conduct
+Bash
+php artisan migrate
+4. Lancement de l'application
+Pour démarrer le serveur de développement local 
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Bash
+php artisant serve
+L'application sera accessible sur http://127.0.0.1:8000.
 
-## Security Vulnerabilities
+5. Architecture et Fonctionnement
+L'application respecte strictement le pattern MVC (Model-View-Controller):
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Models : Utilisation de l'ORM Eloquent pour User.php et ItemDropRate.php. Les relations sont définies (un utilisateur possède plusieurs drops).
 
-## License
+Views : Moteur de template Blade utilisé pour toutes les interfaces (Layout centralisé, formulaires de gestion).
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Controllers :
+
+
+AuthController : Gestion de l'inscription et de la connexion.
+
+
+ItemDropRateController : Logique CRUD pour la gestion des objets.
+
+
+ProfileController : Mise à jour sécurisée du profil et suppression du compte.
+
+
+Admin pour la gestion des entrées utilisateur dans la bdd 
+
+6. Sécurité et Bonnes Pratiques
+
+Protection CSRF 
+
+
+Hachage des mots de passe : Utilisation de Bcrypt (via Hash::make).
+
+
+Validation serveur : Toutes les entrées (nom d'item, ERP, mot de passe) sont validées dans les contrôleurs avant traitement.
