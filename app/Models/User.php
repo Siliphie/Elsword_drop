@@ -46,4 +46,8 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    public function itemDropRates()
+    {
+        return $this->hasMany(ItemDropRate::class);
+    }
 }

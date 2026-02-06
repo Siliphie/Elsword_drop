@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 class ItemDropRateController extends Controller
 {
+    
     public function create()
     {
         return view('drops.create');
@@ -26,6 +27,20 @@ class ItemDropRateController extends Controller
             'drop_rate_ratio' => $request->drop_rate_ratio,
         ]);
 
-        return redirect()->back()->with('success', 'Statistiques ajoutées !');
+        return redirect()->route('drops.index')->with('success', 'Item added');
     }
+    
+    public function index()
+{
+    return view('drops.index'); 
+}
+    public function destroy($id)
+        {
+            
+            $drop = auth()->user()->itemDropRates()->findOrFail($id);
+        
+            $drop->delete();
+
+            return redirect()->route('drops.index')->with('success', 'Item supprimé !');
+        }
 }

@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash; // Ajout nécessaire
+use Illuminate\Support\Facades\Hash; 
+use Illuminate\Support\Facades\Auth; // Ajout nécessaire pour la déconnexion
 use Illuminate\Validation\Rules\Password;
 
 class ProfileController extends Controller
 {
-    // Cette méthode manquait ! Elle permet d'afficher la page.
     public function edit()
     {
         return view('profile.edit');
@@ -37,11 +37,26 @@ class ProfileController extends Controller
 
         if (!empty($dataToUpdate)) {
             $user->update($dataToUpdate);
-            return back()->with('success', 'Profil mis à jour avec succès !');
+            return redirect()->route('home')->with('status', 'profile-updated');
         }
 
-        return back()->with('info', 'Aucune modification effectuée.');
+        return redirect()->route('home')->with('info', 'no modification have been made');
     }
+
+    /**
+     * Supprime le compte de l'utilisateur.
+     */
+    public function destroy(Request $request)
+    {
+        $user = auth()->user();
+
+        Auth::logout();
+
+        $user->delete();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
     
-    // N'oublie pas de remettre ta méthode destroy() ici si tu l'avais enlevée !
+        return redirect('/')->with('success', 'Votre compte a été supprimé.');
+    }
 }
