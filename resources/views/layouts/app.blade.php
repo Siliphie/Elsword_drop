@@ -11,6 +11,9 @@
         <strong>Elsword Drop</strong>
         <ul>
             <li><a href="{{ route('home') }}">Home</a></li>
+            @can('access-admin')
+                <li><a href="{{ route('admin.drops.index') }}" style="color: red;">Admin</a></li>
+            @endcan
             
             @auth
                 <li><strong>Player : {{ auth()->user()->name }} (ERP: {{ auth()->user()->erp }}) </strong>
