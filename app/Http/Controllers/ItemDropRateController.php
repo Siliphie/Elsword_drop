@@ -43,4 +43,16 @@ class ItemDropRateController extends Controller
 
             return redirect()->route('drops.index')->with('success', 'Item supprimé !');
         }
+        public function adminIndex()
+        {
+        
+            if (!Gate::allows('access-admin')) {
+                abort(403); 
+            }
+        
+        
+            $allDrops = ItemDropRate::with('user')->get(); 
+        
+            return view('admin.drops.index', compact('allDrops'));
+        }
 }
