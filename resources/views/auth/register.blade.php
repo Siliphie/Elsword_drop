@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="login-container">
-        <h1>Inscription</h1> <form action="{{ route('register.submit') }}" method="POST">
+        <h1>Inscription</h1> <form action="{{ route('register') }}" method="POST">
             @csrf 
             <div>
                 <label>Nickname :</label>

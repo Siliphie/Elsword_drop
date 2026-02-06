@@ -15,7 +15,7 @@
                 <li><a href="/dashboard">My Drop List</a></li>
                 <li><strong>Player : {{ auth()->user()->name }} (ERP: {{ auth()->user()->erp }}) </strong>
                     <a href="{{ route('profile.edit') }}">
-                    <button type="button">update ERP</button></a></li>
+                    <button type="button">Update profile</button></a></li>
                 <li>
                     <form action="{{ route('logout') }}" method="POST" style="display: inline;">
                         @csrf
