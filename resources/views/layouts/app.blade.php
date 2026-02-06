@@ -9,15 +9,17 @@
     <nav>
         <strong>Elsword Drop</strong>
         <ul>
-            <li><a href="{{ route('home') }}">Accueil</a></li>
+            <li><a href="{{ route('home') }}">Home</a></li>
             
             @auth
                 <li><a href="/dashboard">My Drop List</a></li>
-                <li><strong>Joueur : {{ auth()->user()->name }} (ERP: {{ auth()->user()->erp }}) </strong><button type="submit">update ERP</button></li>
+                <li><strong>Player : {{ auth()->user()->name }} (ERP: {{ auth()->user()->erp }}) </strong>
+                    <a href="{{ route('profile.edit') }}">
+                    <button type="button">update ERP</button></a></li>
                 <li>
                     <form action="{{ route('logout') }}" method="POST" style="display: inline;">
                         @csrf
-                        <button type="submit">Déconnexion</button>
+                        <button type="submit">Deconnexion</button>
                     </form>
                 </li>
             @endauth

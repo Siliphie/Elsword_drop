@@ -5,6 +5,6 @@
 @endpush
 
 @section('content')
-    <h1>Accueil - Elsword Drop Tool</h1>
-    <p>Bienvenue sur ton outil de suivi de drops.</p>
+    <h1>Welcome - Elsword Drop Tool</h1>
+    <p>Welcome to your dropping tool elsword.</p>
 @endsection
