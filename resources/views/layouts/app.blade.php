@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <title>Elsword Tool</title>
 </head>
 <body>
@@ -12,7 +13,6 @@
             <li><a href="{{ route('home') }}">Home</a></li>
             
             @auth
-                <li><a href="/dashboard">My Drop List</a></li>
                 <li><strong>Player : {{ auth()->user()->name }} (ERP: {{ auth()->user()->erp }}) </strong>
                     <a href="{{ route('profile.edit') }}">
                     <button type="button">Update profile</button></a></li>
