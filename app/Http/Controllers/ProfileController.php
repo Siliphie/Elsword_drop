@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash; 
 use Illuminate\Support\Facades\Auth; // Ajout nécessaire pour la déconnexion
 use Illuminate\Validation\Rules\Password;
+use Illuminate\Support\Facades\Gate;
 
 class ProfileController extends Controller
 {
@@ -43,9 +44,7 @@ class ProfileController extends Controller
         return redirect()->route('home')->with('info', 'no modification have been made');
     }
 
-    /**
-     * Supprime le compte de l'utilisateur.
-     */
+   
     public function destroy(Request $request)
     {
         $user = auth()->user();
